@@ -1,0 +1,80 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Welcome to Our Restaurant</h1>
+    <p class="hero-subtitle">Experience culinary excellence with our handcrafted dishes</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" (click)="navigateToMenu()">View Menu</button>
+      <button class="btn btn-secondary" (click)="navigateToReservations()">Book a Table</button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Dishes Section -->
+<section class="featured-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Signature Dishes</h2>
+      <p>Discover our most beloved creations</p>
+    </div>
+    <div class="featured-grid">
+      <div class="featured-card" *ngFor="let item of featuredItems">
+        <div class="featured-image">
+          <img [src]="item.image" [alt]="item.name">
+          <div class="featured-badge" *ngIf="item.chefRecommendation">Chef's Choice</div>
+          <div class="featured-badge popular" *ngIf="item.popular">Popular</div>
+        </div>
+        <div class="featured-content">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
+          <div class="featured-price">${{ item.price.toFixed(2) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Our Story</h2>
+        <p>For over two decades, we've been serving exceptional cuisine crafted with passion and the finest ingredients. Our chefs combine traditional techniques with innovative flavors to create unforgettable dining experiences.</p>
+        <p>We believe that great food brings people together, and every dish we serve is made with care, attention to detail, and a commitment to excellence.</p>
+        <button class="btn btn-outline" routerLink="/about">Learn More</button>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600" alt="Restaurant Interior">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>What Our Guests Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">"Absolutely exceptional dining experience! The food was outstanding and the service was impeccable."</p>
+        <p class="testimonial-author">- Sarah Johnson</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">"The best restaurant in town! Every dish was perfectly prepared and beautifully presented."</p>
+        <p class="testimonial-author">- Michael Chen</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">"An amazing evening from start to finish. We'll definitely be back soon!"</p>
+        <p class="testimonial-author">- Emily Rodriguez</p>
+      </div>
+    </div>
+  </div>
+</section>
+
