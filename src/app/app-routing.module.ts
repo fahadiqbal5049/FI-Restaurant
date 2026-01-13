@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { RestaurentDashComponent } from './restaurent-dash/restaurent-dash.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
@@ -41,9 +40,6 @@ const routes: Routes = [
   },
   {
     path: 'signup', component: SignupComponent 
-  },
-  {
-    path: 'restaurent', component: RestaurentDashComponent
   },
   {
     path: '**', redirectTo: ''
