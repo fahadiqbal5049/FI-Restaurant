@@ -1,0 +1,78 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "hotel 1",
+      "address": "GOBINDAPUR , KAILASHAHAR , UNAKOTI TRIPURA",
+      "email": "sdfaf@gmail.com",
+      "services": "chai , samosa",
+      "mobile": 7845581125
+    },
+    {
+      "id": 2,
+      "name": "selection",
+      "address": "GOBINDAPUR , KAILASHAHAR , UNAKOTI TRIPURA",
+      "email": "selection@abc.com",
+      "services": "chai",
+      "mobile": 78941252511
+    }
+  ],
+  "signup": [
+    {
+      "name": "hotel 1",
+      "email": "sh@abc.com",
+      "mobile": 8769145511,
+      "password": "password@123",
+      "id": 1
+    },
+    {
+      "name": "Selection",
+      "email": "selection@abc.com",
+      "mobile": 3164631649,
+      "password": "passowrd@123",
+      "id": 2
+    },
+    {
+      "name": "abc",
+      "email": "abc@abc.com",
+      "mobile": 123456789,
+      "password": "abc",
+      "id": 3
+    },
+    {
+      "name": "Fahad Iqbal",
+      "email": "fahad@gmail.com",
+      "mobile": "02184218749",
+      "password": "abc",
+      "id": 4
+    }
+  ],
+  "reservations": [
+    {
+      "name": "Fahad",
+      "email": "fahad@abc.com",
+      "phone": "5615165445",
+      "date": "2026-04-05",
+      "time": "19:00",
+      "partySize": 2,
+      "specialRequests": "Testing",
+      "id": 1767744669726,
+      "status": "pending"
+    },
+    {
+      "name": "test",
+      "email": "test@t.com",
+      "phone": "454111651",
+      "date": "2026-01-15",
+      "time": "13:00",
+      "partySize": 2,
+      "specialRequests": "test",
+      "id": 1768432389033,
+      "status": "pending"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
