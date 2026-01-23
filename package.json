@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "json-server": "json-server --watch db.json --port 3000",
     "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng serve",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build",
     "watch": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build --watch --configuration development",

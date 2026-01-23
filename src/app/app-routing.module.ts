@@ -9,45 +9,24 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { AboutComponent } from './about/about.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { LocationComponent } from './location/location.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {
-    path: '', component: HomeComponent
-  },
-  {
-    path: 'home', component: HomeComponent
-  },
-  {
-    path: 'menu', component: MenuComponent
-  },
-  {
-    path: 'cart', component: CartComponent
-  },
-  {
-    path: 'reservations', component: ReservationsComponent
-  },
-  {
-    path: 'about', component: AboutComponent
-  },
-  {
-    path: 'gallery', component: GalleryComponent
-  },
-  {
-    path: 'location', component: LocationComponent
-  },
-  {
-    path: 'login', component: LoginComponent 
-  },
-  {
-    path: 'signup', component: SignupComponent 
-  },
-  {
-    path: '**', redirectTo: ''
-  }
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'menu', component: MenuComponent },
+  { path: 'cart', component: CartComponent},
+  { path: 'reservations', component: ReservationsComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'gallery', component: GalleryComponent },
+  { path: 'location', component: LocationComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
