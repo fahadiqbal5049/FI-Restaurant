@@ -1,0 +1,132 @@
+<div class="reservations-container">
+  <div class="container">
+    <div class="reservation-header">
+      <h1>Book a Table</h1>
+      <p>Reserve your spot for an unforgettable dining experience</p>
+    </div>
+
+    <div class="reservation-content">
+      <div class="reservation-info">
+        <h2>Reservation Information</h2>
+        <div class="info-card">
+          <h3>📍 Location</h3>
+          <p>123 Restaurant Street<br>Food City, FC 12345</p>
+        </div>
+        <div class="info-card">
+          <h3>🕐 Hours</h3>
+          <p><strong>Monday - Thursday:</strong> 11:00 AM - 10:00 PM<br>
+          <strong>Friday - Saturday:</strong> 11:00 AM - 11:00 PM<br>
+          <strong>Sunday:</strong> 12:00 PM - 9:00 PM</p>
+        </div>
+        <div class="info-card">
+          <h3>📞 Contact</h3>
+          <p>Phone: (555) 123-4567<br>Email: reservations@restaurant.com</p>
+        </div>
+        <div class="info-card">
+          <h3>ℹ️ Important Notes</h3>
+          <ul>
+            <li>Reservations can be made up to 3 months in advance</li>
+            <li>For parties of 8 or more, please call us directly</li>
+            <li>We recommend booking at least 24 hours in advance</li>
+            <li>Cancellations must be made at least 2 hours before your reservation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reservation-form-container">
+        <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()" class="reservation-form">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" formControlName="name" class="form-control" placeholder="Enter your name">
+            <span *ngIf="reservationForm.get('name')?.touched && reservationForm.get('name')?.errors?.['required']" class="error">
+              Name is required
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" formControlName="email" class="form-control" placeholder="your.email@example.com">
+            <span *ngIf="reservationForm.get('email')?.touched && reservationForm.get('email')?.errors?.['required']" class="error">
+              Email is required
+            </span>
+            <span *ngIf="reservationForm.get('email')?.touched && reservationForm.get('email')?.errors?.['email']" class="error">
+              Invalid email format
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" formControlName="phone" class="form-control" placeholder="(555) 123-4567">
+            <span *ngIf="reservationForm.get('phone')?.touched && reservationForm.get('phone')?.errors?.['required']" class="error">
+              Phone number is required
+            </span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date *</label>
+              <input 
+                type="date" 
+                formControlName="date" 
+                class="form-control"
+                [min]="minDate"
+                [max]="maxDate">
+              <span *ngIf="reservationForm.get('date')?.touched && reservationForm.get('date')?.errors?.['required']" class="error">
+                Date is required
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label>Time *</label>
+              <select formControlName="time" class="form-control" [disabled]="loadingTimes || availableTimes.length === 0">
+                <option value="">Select time</option>
+                <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
+              </select>
+              <span *ngIf="loadingTimes" class="loading-text">Loading available times...</span>
+              <span *ngIf="reservationForm.get('time')?.touched && reservationForm.get('time')?.errors?.['required']" class="error">
+                Time is required
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Party Size *</label>
+            <input 
+              type="number" 
+              formControlName="partySize" 
+              class="form-control"
+              min="1"
+              max="20"
+              placeholder="Number of guests">
+            <span *ngIf="reservationForm.get('partySize')?.touched && reservationForm.get('partySize')?.errors?.['required']" class="error">
+              Party size is required
+            </span>
+            <span *ngIf="reservationForm.get('partySize')?.touched && reservationForm.get('partySize')?.errors?.['min']" class="error">
+              Minimum 1 guest
+            </span>
+            <span *ngIf="reservationForm.get('partySize')?.touched && reservationForm.get('partySize')?.errors?.['max']" class="error">
+              Maximum 20 guests (please call for larger parties)
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Special Requests</label>
+            <textarea 
+              formControlName="specialRequests" 
+              class="form-control" 
+              rows="4"
+              placeholder="Dietary restrictions, celebrations, seating preferences, etc."></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            class="btn-submit"
+            [disabled]="reservationForm.invalid || loadingTimes">
+            Confirm Reservation
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
