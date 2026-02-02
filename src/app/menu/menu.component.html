@@ -1,0 +1,121 @@
+<div class="menu-container">
+  <!-- Menu Header -->
+  <div class="menu-header">
+    <div class="container">
+      <h1>Our Menu</h1>
+      <p>Discover our carefully crafted dishes made with the finest ingredients</p>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="container">
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input 
+          type="text" 
+          placeholder="Search for dishes..." 
+          [(ngModel)]="searchQuery"
+          (input)="searchMenu()"
+          class="search-input">
+        <span class="search-icon">🔍</span>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="category-tabs">
+        <button 
+          *ngFor="let category of categories" 
+          [class.active]="selectedCategory === category"
+          (click)="filterByCategory(category)"
+          class="category-tab">
+          {{ category }}
+        </button>
+      </div>
+
+      <!-- Dietary Filters -->
+      <div class="dietary-filters">
+        <span class="filter-label">Dietary Preferences:</span>
+        <button 
+          *ngFor="let dietary of dietaryOptions"
+          [class.active]="selectedDietary.includes(dietary)"
+          (click)="toggleDietary(dietary)"
+          class="dietary-btn">
+          {{ dietary }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Items -->
+  <div class="menu-content">
+    <div class="container">
+      <div *ngIf="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Loading menu...</p>
+      </div>
+
+      <div *ngIf="!loading && filteredItems.length === 0" class="no-results">
+        <p>No items found. Try adjusting your filters.</p>
+      </div>
+
+      <div *ngFor="let category of categories.slice(1)" class="menu-category">
+        <div *ngIf="getItemsByCategory(category).length > 0">
+          <h2 class="category-title">{{ category }}</h2>
+          <div class="menu-grid">
+            <div class="menu-item"
+                 *ngFor="let item of getItemsByCategory(category)">
+              
+              <div class="menu-item-image">
+                <img [src]="item.image" [alt]="item.name">
+                <div class="item-badges">
+                  <span *ngIf="item.chefRecommendation" class="badge chef">Chef's Choice</span>
+                  <span *ngIf="item.popular" class="badge popular">Popular</span>
+                </div>
+              </div>
+
+              <div class="menu-item-content">
+                <div class="item-header">
+                  <h3>{{ item.name }}</h3>
+                  <span class="item-price">${{ item.price.toFixed(2) }}</span>
+                </div>
+
+                <p class="item-description">{{ item.description }}</p>
+
+                <div class="item-tags" *ngIf="item.dietaryTags && item.dietaryTags.length > 0">
+                  <span 
+                    *ngFor="let tag of item.dietaryTags" 
+                    class="tag">
+                    {{ tag }}
+                  </span>
+                  <span *ngIf="item.spicyLevel && item.spicyLevel > 0" class="tag spicy">
+                    {{ getSpicyLevelEmoji(item.spicyLevel) }} Spicy
+                  </span>
+                </div>
+
+                <div class="item-details" *ngIf="item.ingredients">
+                  <details>
+                    <summary>Ingredients & Allergens</summary>
+                    <div class="details-content">
+                      <p><strong>Ingredients:</strong> {{ item.ingredients.join(', ') }}</p>
+                      <p *ngIf="item.allergens && item.allergens.length > 0">
+                        <strong>Allergens:</strong> {{ item.allergens.join(', ') }}
+                      </p>
+                    </div>
+                  </details>
+                </div>
+
+                <button 
+                  class="btn-add-to-cart"
+                  (click)="addToCart(item)"
+                  [disabled]="!item.available">
+                  {{ item.available ? 'Add to Cart' : 'Unavailable' }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
