@@ -1,0 +1,65 @@
+<div class="location-container">
+  <div class="location-header">
+    <h1>Find Us</h1>
+    <p>Visit us at our location or get in touch</p>
+  </div>
+
+  <div class="container">
+    <div class="location-content">
+      <div class="location-info">
+        <div class="info-card">
+          <h2>📍 Address</h2>
+          <p>{{ restaurantLocation.address }}</p>
+        </div>
+
+        <div class="info-card">
+          <h2>🕐 Hours</h2>
+          <div class="hours-list">
+              <ul>
+                <li><strong>Mon - Thu:</strong> 11:00 AM - 10:00 PM</li>
+                <li><strong>Fri - Sat:</strong> 11:00 AM - 11:00 PM</li>
+                <li><strong>Sunday:</strong> 12:00 PM - 9:00 PM</li>
+              </ul>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2>📞 Contact</h2>
+          <p><strong>Phone:</strong> <a href="tel:{{ restaurantLocation.phone }}">{{ restaurantLocation.phone }}</a></p>
+          <p><strong>Email:</strong> <a href="mailto:{{ restaurantLocation.email }}">{{ restaurantLocation.email }}</a></p>
+        </div>
+
+        <div class="info-card">
+          <h2>🚗 Parking</h2>
+          <p>Complimentary valet parking is available. Street parking is also available on surrounding streets.</p>
+        </div>
+
+        <div class="info-card">
+          <h2>🚇 Directions</h2>
+          <p>Located in the heart of Food City, easily accessible by public transportation. We're just a 5-minute walk from the Main Street subway station.</p>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <div class="map-wrapper">
+          <iframe 
+            width="100%" 
+            height="100%" 
+            style="border:0; border-radius: 12px;" 
+            loading="lazy" 
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            [src]="getMapEmbedUrl()"
+            title="Restaurant Location Map">
+          </iframe>
+          <div class="map-overlay">
+            <a [href]="getMapSearchUrl()" target="_blank" class="map-link-btn">
+              📍 Open in Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
