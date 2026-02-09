@@ -1,0 +1,30 @@
+<div class="gallery-container">
+  <div class="gallery-header">
+    <h1>Photo Gallery</h1>
+    <p>Take a visual journey through our restaurant</p>
+  </div>
+
+  <div class="container">
+    <div class="gallery-grid">
+      <div 
+        *ngFor="let image of galleryImages" 
+        class="gallery-item"
+        (click)="openLightbox(image)">
+        <img [src]="image.url" [alt]="image.title">
+        <div class="gallery-overlay">
+          <h3>{{ image.title }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div *ngIf="selectedImage" class="lightbox" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closeLightbox()">×</button>
+      <img [src]="selectedImage.url" [alt]="selectedImage.title">
+      <p>{{ selectedImage.title }}</p>
+    </div>
+  </div>
+</div>
+
