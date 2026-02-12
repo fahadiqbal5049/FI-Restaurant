@@ -1,0 +1,63 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand" (click)="navigateTo('/')">
+      <div class="brand-icon">🍽️</div>
+      <div class="brand-text">
+        <span class="brand-name">FI Restaurant</span>
+        <span class="brand-tagline">Fine Dining</span>
+      </div>
+    </div>
+
+    <button class="mobile-menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-menu" [class.active]="isMenuOpen">
+      <li><a (click)="navigateTo('/')" [class.active]="router.url === '/' || router.url === '/home'">Home</a></li>
+      <li><a (click)="navigateTo('/menu')" [class.active]="isActiveRoute('/menu')">Menu</a></li>
+      <li><a (click)="navigateTo('/reservations')" [class.active]="isActiveRoute('/reservations')">Reservations</a></li>
+      <li><a (click)="navigateTo('/about')" [class.active]="isActiveRoute('/about')">About</a></li>
+      <li><a (click)="navigateTo('/gallery')" [class.active]="isActiveRoute('/gallery')">Gallery</a></li>
+      <li><a (click)="navigateTo('/location')" [class.active]="isActiveRoute('/location')">Location</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a (click)="navigateTo('/cart')" class="cart-link" [class.active]="isActiveRoute('/cart')">
+        🛒 Cart
+        <span *ngIf="cartItemCount > 0" class="cart-badge">{{ cartItemCount }}</span>
+      </a>
+
+      <!-- Auth Section - Right Side -->
+      <div class="nav-auth" [class.active]="isMenuOpen">
+        <ng-container *ngIf="!isLoggedIn">
+          <button class="auth-btn btn-login" (click)="navigateTo('/login')">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M10 11C12.7614 11 15 8.76142 15 6C15 3.23858 12.7614 1 10 1C7.23858 1 5 3.23858 5 6C5 8.76142 7.23858 11 10 11Z" stroke="currentColor" stroke-width="2" />
+              <path d="M3 19C3 15.134 6.13401 12 10 12C13.866 12 17 15.134 17 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <span>Login</span>
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="isLoggedIn">
+          <div class="user-menu">
+            <div class="user-avatar">
+              <span>{{ (userName || 'U')[0].toUpperCase() }}</span>
+            </div>
+            <div class="user-info">
+              <span class="user-name">{{ userName || 'User' }}</span>
+              <button class="btn-logout" (click)="logout()">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                  <path d="M13 3L19 3L19 9M19 3L11 11M8 3H5C3.89543 3 3 3.89543 3 5V15C3 16.1046 3.89543 17 5 17H8M12 10H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</nav>
