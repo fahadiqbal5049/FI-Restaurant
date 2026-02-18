@@ -182,7 +182,7 @@
 }
 
 .menu-item-card:hover .menu-item-image img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .item-badges {
