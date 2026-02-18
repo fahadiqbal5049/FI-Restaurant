@@ -62,11 +62,11 @@
         <div *ngIf="getItemsByCategory(category).length > 0">
           <h2 class="category-title">{{ category }}</h2>
           <div class="menu-grid">
-            <div class="menu-item"
+            <div class="menu-item-card"
                  *ngFor="let item of getItemsByCategory(category)">
               
               <div class="menu-item-image">
-                <img [src]="item.image" [alt]="item.name">
+                <img [src]="item.image" [alt]="item.name" (error)="onImageError($event)">
                 <div class="item-badges">
                   <span *ngIf="item.chefRecommendation" class="badge chef">Chef's Choice</span>
                   <span *ngIf="item.popular" class="badge popular">Popular</span>
