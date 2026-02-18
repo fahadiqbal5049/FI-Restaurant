@@ -108,5 +108,11 @@ export class MenuComponent implements OnInit {
     if (!level) return '';
     return '🌶'.repeat(level);
   }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    console.debug('Image failed to load, replacing with placeholder. original src=', img.src);
+    img.src = 'https://via.placeholder.com/400x250?text=No+Image';
+  }
 }
 
